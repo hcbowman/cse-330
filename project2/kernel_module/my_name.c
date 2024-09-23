@@ -5,8 +5,15 @@
 MODULE_LICENSE("GPL");
 MODULE_AUTHOR("Hunter Bowman");
 
+static int intParameter = 0;
+module_param(intParameter, int, 0);
+
+static char* charParameter = "default";
+module_param(charParameter, charp, 0);
+
 static int __init example_init(void) {
     printk(KERN_INFO "Hello World\n");
+    printk(KERN_INFO "Hello, I am Hunter Bowman, a student of CSE330 %s %d .\n", charParameter, intParameter);
     return 0;
 }
 
@@ -15,4 +22,4 @@ static void __exit example_exit(void) {
 }
 
 module_init(example_init);
-module_init(example_exit);
+module_exit(example_exit);
